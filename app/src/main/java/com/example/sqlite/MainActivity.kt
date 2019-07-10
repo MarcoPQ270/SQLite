@@ -112,6 +112,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Asies jsjsjsjsjsjsjsjs
+
     fun leercajas(){
         no=etcontrol.text.toString()
         nom=etnombre.text.toString()
