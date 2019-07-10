@@ -60,10 +60,11 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" android:layout_marginTop="32dp"
             app:layout_constraintTop_toBottomOf="@+id/etcarrera" android:hint="Edad"
-            app:layout_constraintHorizontal_bias="0.181"/>
+            app:layout_constraintHorizontal_bias="0.181" android:text="0"/>
     <Button
             android:text="Buscar"
             android:layout_width="wrap_content"
+            android:onClick="buscarEstudiante"
             android:layout_height="wrap_content"
             android:id="@+id/btnbuscar" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
@@ -73,30 +74,33 @@
     <Button
             android:text="agregar"
             android:layout_width="wrap_content"
+            android:onClick="agregaEstudiante"
             android:layout_height="wrap_content"
-            android:id="@+id/btnagregar" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="40dp"
-            android:layout_marginStart="40dp" android:layout_marginBottom="224dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="33dp" app:layout_constraintTop_toBottomOf="@+id/etedad"/>
+            android:id="@+id/btnagregar" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="52dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="112dp" app:layout_constraintTop_toBottomOf="@+id/etedad"
+            android:layout_marginBottom="145dp" app:layout_constraintBottom_toBottomOf="parent"/>
     <Button
             android:text="eliminar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="elimaEstudiante"
             android:id="@+id/btneliminar" android:layout_marginEnd="32dp" android:layout_marginRight="32dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="224dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/etedad"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="112dp" app:layout_constraintTop_toBottomOf="@+id/etedad"
+            android:layout_marginBottom="145dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:enabled="false"/>
     <Button
             android:text="modificar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnmodificar"
-            android:layout_marginBottom="224dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="modificarEstudiante"
             app:layout_constraintStart_toEndOf="@+id/btnagregar"
             android:layout_marginLeft="42dp" android:layout_marginStart="42dp"
             app:layout_constraintEnd_toStartOf="@+id/btneliminar" android:layout_marginEnd="27dp"
-            android:layout_marginRight="27dp" app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="33dp"
-            app:layout_constraintTop_toBottomOf="@+id/etedad"/>
+            android:layout_marginRight="27dp" app:layout_constraintHorizontal_bias="0.75"
+            android:layout_marginTop="112dp"
+            app:layout_constraintTop_toBottomOf="@+id/etedad" android:layout_marginBottom="145dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:enabled="false"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
