@@ -65,11 +65,12 @@
             android:text="Buscar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnbuscar" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="10dp"
+            android:id="@+id/btnbuscar"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="128dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/etcontrol"
-            android:layout_marginLeft="10dp" android:layout_marginStart="10dp"/>
+            android:layout_marginLeft="10dp" android:layout_marginStart="10dp" android:onClick="searchStudent"/>
     <Button
             android:text="agregar"
             android:layout_width="wrap_content"
@@ -77,7 +78,8 @@
             android:id="@+id/btnagregar" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp" android:layout_marginBottom="224dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="33dp" app:layout_constraintTop_toBottomOf="@+id/etedad"/>
+            android:layout_marginTop="33dp" app:layout_constraintTop_toBottomOf="@+id/etedad"
+            android:onClick="addStudent"/>
     <Button
             android:text="eliminar"
             android:layout_width="wrap_content"
@@ -86,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="224dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/etedad"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintVertical_bias="1.0" android:onClick="deleteStudent"/>
     <Button
             android:text="modificar"
             android:layout_width="wrap_content"
@@ -98,5 +100,14 @@
             android:layout_marginLeft="42dp" android:layout_marginStart="42dp"
             app:layout_constraintEnd_toStartOf="@+id/btneliminar" android:layout_marginEnd="27dp"
             android:layout_marginRight="27dp" app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="33dp"
-            app:layout_constraintTop_toBottomOf="@+id/etedad"/>
+            app:layout_constraintTop_toBottomOf="@+id/etedad" android:onClick="updateStudent"/>
+    <Button
+            android:text="Ver lista"
+            android:onClick="navigateToList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_see_list"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp" android:layout_marginRight="32dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
