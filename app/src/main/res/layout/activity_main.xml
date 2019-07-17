@@ -5,18 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#CD000000"
         tools:context=".MainActivity">
-    <TextView
-            android:text="Estudiantes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView" android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintVertical_bias="0.094"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,82 +15,118 @@
             android:id="@+id/etnombre"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@+id/etcontrol" android:hint="Nombre Estudiante"
+            android:layout_marginRight="8dp" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/etcontrol"
+            android:hint="Nombre Estudiante"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             app:layout_constraintHorizontal_bias="0.181"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="numberSigned"
             android:ems="10"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:id="@+id/etcontrol" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="101dp" android:layout_marginRight="101dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView" android:hint="NoControl"
+            android:hint="NoControl"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp" app:layout_constraintHorizontal_bias="0.37"/>
+            android:layout_marginLeft="8dp" app:layout_constraintHorizontal_bias="0.37"
+            android:layout_marginTop="56dp" app:layout_constraintTop_toTopOf="parent"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
+            android:textColorHint="#fff"
             android:id="@+id/etcarrera" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="48dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="52dp"
+            android:textColor="#fff"
             app:layout_constraintTop_toBottomOf="@+id/etnombre" android:hint="Carrera"
             app:layout_constraintHorizontal_bias="0.181"/>
     <EditText
             android:layout_width="wrap_content"
+            android:textColor="#fff"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
+            android:textColorHint="#fff"
             android:id="@+id/etedad" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="32dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="28dp"
             app:layout_constraintTop_toBottomOf="@+id/etcarrera" android:hint="Edad"
-            app:layout_constraintHorizontal_bias="0.181" android:text="0"/>
-    <Button
-            android:text="Buscar"
+            app:layout_constraintHorizontal_bias="0.181"/>
+
+    <ImageButton
+            android:scaleType="fitXY"
+            android:layout_width="119dp"
+
+            android:layout_height="121dp" app:srcCompat="@drawable/a"
+            android:id="@+id/lssss" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            app:layout_constraintVertical_bias="0.86"/>
+    <ImageButton
+            android:scaleType="fitXY"
+            android:layout_width="67dp"
+            android:layout_height="59dp" app:srcCompat="@drawable/bu"
+            android:id="@+id/btnbuscar" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:onClick="searchStudent"
+            app:layout_constraintHorizontal_bias="0.862" app:layout_constraintVertical_bias="0.074"/>
+    <ImageButton
+            android:scaleType="fitXY"
+            android:layout_width="67dp"
+            android:layout_height="59dp" app:srcCompat="@drawable/ag"
+            android:id="@+id/btnagregar" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:onClick="addStudent"
+            app:layout_constraintHorizontal_bias="0.143" app:layout_constraintVertical_bias="0.568"/>
+
+    <ImageButton
+            android:scaleType="fitXY"
+            android:layout_width="67dp"
+            android:layout_height="59dp" app:srcCompat="@drawable/ed"
+            android:id="@+id/btnmodificar" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:onClick="updateStudent"
+            app:layout_constraintVertical_bias="0.568"/>
+    <ImageButton
+            android:scaleType="fitXY"
+            android:layout_width="67dp"
+            android:layout_height="59dp" app:srcCompat="@drawable/el"
+            android:id="@+id/btneliminar" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:onClick="deleteStudent"
+            app:layout_constraintVertical_bias="0.568" app:layout_constraintHorizontal_bias="0.896"/>
+    <TextView
+            android:text="Ver lista de estudiantes:"
+            android:textColor="#fff"
             android:layout_width="wrap_content"
-            android:onClick="buscarEstudiante"
             android:layout_height="wrap_content"
-            android:id="@+id/btnbuscar" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="128dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/etcontrol"
-            android:layout_marginLeft="10dp" android:layout_marginStart="10dp"/>
-    <Button
-            android:text="agregar"
-            android:layout_width="wrap_content"
-            android:onClick="agregaEstudiante"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnagregar" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="52dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="112dp" app:layout_constraintTop_toBottomOf="@+id/etedad"
-            android:layout_marginBottom="145dp" app:layout_constraintBottom_toBottomOf="parent"/>
-    <Button
-            android:text="eliminar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="elimaEstudiante"
-            android:id="@+id/btneliminar" android:layout_marginEnd="32dp" android:layout_marginRight="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="112dp" app:layout_constraintTop_toBottomOf="@+id/etedad"
-            android:layout_marginBottom="145dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:enabled="false"/>
-    <Button
-            android:text="modificar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnmodificar"
-            android:onClick="modificarEstudiante"
-            app:layout_constraintStart_toEndOf="@+id/btnagregar"
-            android:layout_marginLeft="42dp" android:layout_marginStart="42dp"
-            app:layout_constraintEnd_toStartOf="@+id/btneliminar" android:layout_marginEnd="27dp"
-            android:layout_marginRight="27dp" app:layout_constraintHorizontal_bias="0.75"
-            android:layout_marginTop="112dp"
-            app:layout_constraintTop_toBottomOf="@+id/etedad" android:layout_marginBottom="145dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:enabled="false"/>
+            android:id="@+id/textView2" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.496" app:layout_constraintVertical_bias="0.687"
+            android:textSize="24sp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

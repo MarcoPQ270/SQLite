@@ -1,5 +1,4 @@
 package com.example.sqlite
-
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -11,6 +10,7 @@ class adBD (context: Context) :SQLiteOpenHelper(context, DATABASE, null, 1)
     {
         val DATABASE="Escuela"
     }
+
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(
                 "Create Table Estudiante(" +
@@ -20,37 +20,34 @@ class adBD (context: Context) :SQLiteOpenHelper(context, DATABASE, null, 1)
                         "edadEst Integer)"
         )
     }
-
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
 
     }
 
     fun consulta(select: String):Cursor? {
-        try
-        {
-            val db = this.readableDatabase
-            return db.rawQuery(select,null)
+            try
+            {
+                val db = this.readableDatabase
+                return db.rawQuery(select,null)
+            }
+            catch (ex:Exception)
+            {
+                return null
+            }
         }
-        catch (ex:Exception)
-        {
-            return null
-        }
+
+        fun Ejecuta(sentencia:String):Int {
+            try
+            {
+                val db=this.writableDatabase// se abre base datos en base modo lectura
+                db.execSQL(sentencia)
+                db.close()
+                return  1
+            }
+            catch (ex: Exception)
+            {
+                return 0
+            }
     }
-
-    fun Ejecuta(sentencia:String):Int {
-        try
-        {
-            val db=this.writableDatabase// se abre base datos en base modo lectura
-            db.execSQL(sentencia)
-            db.close()
-            return  1
-        }
-        catch (ex: Exception)
-        {
-            return 0
-        }
-    }
-
-
 
 }

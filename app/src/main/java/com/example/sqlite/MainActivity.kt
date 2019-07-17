@@ -1,132 +1,121 @@
 package com.example.sqlite
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var no:String =""
+    var control:String=""
+    var carrera:String=""
     var nom:String=""
     var edad:String="0"
-    var carrera:String=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var btn= findViewById<ImageButton>(R.id.lssss)
+        btn.setOnClickListener {
+            startActivity(Intent(this@MainActivity,ListaActivity::class.java))
+
+        }
+
     }
 
-    fun buscarEstudiante (v:View){
-        if(etcontrol.text.isEmpty()){
-            Toast.makeText(this,"Campos vacios",Toast.LENGTH_LONG).show()
-        }
-        else
-        {
-            no = etcontrol.text.toString()
-            val admin = adBD(this)
-                                                        //0      //1     //2       //3
-            val tupla= admin.consulta("SELECT noControl, nomEst, carrera, edadEst FROM Estudiante WHERE noControl='$no'")
 
-            if (tupla!!.moveToFirst())
-            {
+
+    fun searchStudent(v: View){
+        if(!etcontrol.text.isEmpty()){
+            control=etcontrol.text.toString()
+            val database =adBD(this)
+            val tupla=database.consulta("SELECT noControl,nomEst,carrera,edadEst FROM Estudiante where noControl='$control'")
+            if(tupla!!.moveToFirst()){
+                etnombre.setText(tupla.getString(0))
                 etnombre.setText(tupla.getString(1))
                 etcarrera.setText(tupla.getString(2))
                 etedad.setText(tupla.getString(3))
-                btnagregar.isEnabled=false
-                btneliminar.isEnabled=true
-                btnmodificar.isEnabled=true
-            }
-            else
-                {
-                    Toast.makeText(this, "No existe el nuemero de control", Toast.LENGTH_SHORT).show();
-                    etcontrol.requestFocus()
-                }
-        }
-    }
-    fun agregaEstudiante(v: View){
-        if (etcontrol.text.isEmpty() || etnombre.text.isEmpty()||etcarrera.text.isEmpty()||etedad.text.isEmpty()){
-            Toast.makeText(this, "Campos vacios", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            leercajas()
-
-            val sentecia :String="INSERT INTO Estudiante(noControl, nomEst, carrera, edadEst)VALUES('$no','$nom','$carrera',$edad)"
-            val admin = adBD(this)
-
-            if(admin.Ejecuta(sentecia) ==1){
-                Toast.makeText(this, "Estudiante agregado", Toast.LENGTH_SHORT).show();
-                limpiarcaja()
-            }else
-            {
-                Toast.makeText(this, "Estudiante no agregado", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "No hay registros almacenados", Toast.LENGTH_SHORT).show();
                 etcontrol.requestFocus()
             }
+        }else{
+            Toast.makeText(this, "No puedes dejar los campos vacios", Toast.LENGTH_SHORT).show();
         }
     }
-
-    fun modificarEstudiante(v:View){
-        if (etcontrol.text.isEmpty() || etnombre.text.isEmpty()||etcarrera.text.isEmpty()||etedad.text.isEmpty()){
-            Toast.makeText(this, "Campos vacios", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            leercajas()
-
-            val sentecia :String="UPDATE Estudiante SET nomEst ='$nom', carrera='$carrera', edadEst=$edad WHERE noControl='$no'"
-            val admin = adBD(this)
-
-            if(admin.Ejecuta(sentecia) ==1){
-                Toast.makeText(this, "Estudiante modificado", Toast.LENGTH_SHORT).show();
-                limpiarcaja()
-            }else
-            {
-                Toast.makeText(this, "Estudiante no modificado", Toast.LENGTH_SHORT).show();
-                etcontrol.requestFocus()
+    fun addStudent(v:View) {
+        if (!etcontrol.text.isEmpty() && !etcarrera.text.isEmpty() && !etedad.text.isEmpty() && !etnombre.text.isEmpty()) {
+            getValues()
+            val database=adBD(this)
+            val tupla=database.Ejecuta("INSERT INTO Estudiante(noControl,nomEst,carrera,edadEst) VALUES(" +
+                    "'$control'," +
+                    "'$nom'," +
+                    "'$carrera'," +
+                    "'$edad')")
+            if(tupla==1){
+                Toast.makeText(this, "Registro insertado", Toast.LENGTH_SHORT).show()
+               clearFields()
+            }else{
+                Toast.makeText(this, "Error al insertar", Toast.LENGTH_SHORT).show()
             }
+        }else{
+            Toast.makeText(this, "No puedes dejar ningún campo de texto vacio", Toast.LENGTH_SHORT).show()
         }
+
 
     }
-
-    fun elimaEstudiante(v:View){
-        if (etcontrol.text.isEmpty()){
-            Toast.makeText(this, "Insertar numero de control", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            leercajas()
-            val sentecia :String="DELETE FROM Estudiante where noControl='$no'"
-            val admin = adBD(this)
-
-            if(admin.Ejecuta(sentecia) ==1){
-                Toast.makeText(this, "Estudiante eliminado", Toast.LENGTH_SHORT).show();
-                limpiarcaja()
-            }else
-            {
-                Toast.makeText(this, "Estudiante no eliminado", Toast.LENGTH_SHORT).show();
-                etcontrol.requestFocus()
+    fun updateStudent(v:View){
+        if (!etcontrol.text.isEmpty() && !etcarrera.text.isEmpty() && !etedad.text.isEmpty() && !etnombre.text.isEmpty()) {
+            getValues()
+            val database=adBD(this)
+            val tupla=database.Ejecuta("update Estudiante set nomEst='$nom',carrera='$carrera',edadEst=$edad     WHERE noControl='$control'")
+            if(tupla==1){
+                Toast.makeText(this, "Registro actualizado", Toast.LENGTH_SHORT).show()
+                clearFields()
+            }else{
+                Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show()
             }
-
+        }else{
         }
     }
-
-    fun leercajas(){
-        no=etcontrol.text.toString()
+    fun deleteStudent(v:View){
+        if(!etcontrol.text.isEmpty()){
+            control=etcontrol.text.toString()
+            val database =adBD(this)
+            val tupla=database.Ejecuta("DELETE from Estudiante where noControl='$control'")
+            if(tupla==1){
+                Toast.makeText(this, "Registro eliminado", Toast.LENGTH_SHORT).show()
+                clearFields()
+            }else{
+                Toast.makeText(this, "Error al eliminado", Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            Toast.makeText(this, "No puedes dejar los campos vacios", Toast.LENGTH_SHORT).show();
+        }
+    }
+    fun getValues(){
+        control=etcontrol.text.toString()
         nom=etnombre.text.toString()
         carrera=etcarrera.text.toString()
         edad=etedad.text.toString()
     }
-    fun limpiarcaja(){
-        no=""
+    fun clearFields(){
         nom=""
         carrera=""
-        edad="0"
-        etcontrol.setText("")
+        control=""
+        edad=""
+
         etnombre.setText("")
         etcarrera.setText("")
         etedad.setText("0")
+        etcontrol.setText("")
+        etcontrol.requestFocus()
+
         btnagregar.isEnabled=true
         btnmodificar.isEnabled=false
         btneliminar.isEnabled=false
